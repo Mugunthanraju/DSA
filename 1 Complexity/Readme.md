@@ -33,7 +33,7 @@
   from some distribution that generates these inputs, compute the total
   running time (by adding the individual times), and divide by the
   number of trials.
-* Assumes that the input is random.
+* Assumes that the `input is random`.
 
 #### `Lower Bound <= Average Time <= Upper Bound`
 
@@ -76,7 +76,7 @@ for (i=1; i<=n; i++)
 ```
 Total time = c x n x n = cn² = O(n²).
 
-3) Consecutive statements: Add the time complexities of each statements.
+3) **Consecutive statements:** Add the time complexities of each statements.
 
 ```cpp
 x = x+1; //constant time
@@ -116,6 +116,18 @@ Total time = c₀ + c₁ + (c₂ + c₃) * n = O(n).
 
 ```cpp
 for(i=1; i<=n;){
-  i = i*2;
+  i = i*2;  // <or>  i = i/2;
 }
 ```
+Total time = O(logn).
+
+### Simplifying properties of Asymptotic Notations 
+
+* `Transitivity:` f(n) = Θ(g(n)) and g(n) = Θ(h(n)) ⇒ f(n) = Θ(h(n)). Valid for O and Ω as well.
+* `Reflexivity:` f(n) = Θ(f(n)). Valid for O and Ω.
+* `Symmetry:` f(n) = Θ(g(n)) if and only if g(n) = Θ(f(n)).
+* `Transpose symmetry:` f(n) = O(g(n)) if and only if g(n) = Ω(f(n)).
+* If f(n) is in O(kg(n)) for any constant k > 0, then f(n) is in O(g(n)).
+* If f1(n) is in O(g1(n)) and f2(n) is in O(g2(n)), then (f1 + f2)(n) is in O(max(g1(n)), (g1(n))).
+* If f1(n) is in O(g1(n)) and f2(n) is in O(g2(n)) then f1(n) f2(n) is in O(g1(n) g1(n)).
+
