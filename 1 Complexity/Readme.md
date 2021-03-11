@@ -40,7 +40,7 @@
 ### Asymptotic Notation :-
 
 **Big O Notation [Upper Bounding Function] :-**
-* This notation gives the tight upper bound of the given function. Generally, it is represented as f(n) = O(g(n)). That means, at larger values of n, the upper     bound of f(n) is g(n).
+* This notation gives the tight upper bound of the given function. Generally, it is represented as f(n) = O(g(n)). That means, at larger values of n, the upper bound of f(n) is g(n).
 
 **Omega Ω Notation [Lower Bounding Function] :-**
 * This notation gives the tighter lower bound of the given algorithm and we represent it as f(n) = Ω(g(n)). That means, at larger values of n, the tighter lower bound of f(n) is g(n).
@@ -130,4 +130,23 @@ Total time = O(logn).
 * If f(n) is in O(kg(n)) for any constant k > 0, then f(n) is in O(g(n)).
 * If f1(n) is in O(g1(n)) and f2(n) is in O(g2(n)), then (f1 + f2)(n) is in O(max(g1(n)), (g1(n))).
 * If f1(n) is in O(g1(n)) and f2(n) is in O(g2(n)) then f1(n) f2(n) is in O(g1(n) g1(n)).
+
+### Important Summation Formulas
+
+* ![Summations](.\img\summationRules.GIF)
+* ![Sequence](.\img\sequence.jpg)
+
+### Logarithmic Formulas
+
+* ![Logarithm](.\img\logarithm.jpg)
+
+### Master Theorem for Divide and Conquer Recurrences:
+
+* All divide and conquer algorithms divide the problem into sub-problems, each of which is part of the original problem, and then perform some additional work to compute the final answer.
+
+### Amortized Analysis :
+
+* Amortized analysis refers to determining the time-averaged running time fore a sequence of operations. It is the different from average case analysis, because amortized analysis doesn't make any assumption about the distribution of the data values, whereas average case analysis assumes the data are not "bad".That is, amortized analysis is a worst-case analysis, but for a sequence of operations rather than for individual operations.
+
+* The motivational for amortized analysis is to better understood the running time of certain techniques, where standard  worst case analysis provides an overly pessimistic bound. Amortized analysis generally applies to a method that consists of a sequence of a sequence of operations, where the vast majority of the operations are cheap, but some of the operations are expensive. If we can show that the expensive operations are particularly rare we can change them to the cheap operations, and only bound the cheap operations.
 
