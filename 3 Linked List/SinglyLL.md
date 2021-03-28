@@ -169,3 +169,113 @@ void tail(Node** head_ref, int new_data)
 **Similar to insertion, deletion also has three types of cases.**
 
 ### 1) Deleting the head node in Singly Linked List: 
+
+*First node (current head node) is removed from the list. It can be done in two steps:*
+* Create a temporary node which will point to the same node as that of head.
+* Now, move the head nodes pointer to the next node and dispose of the temporary node.
+
+### 2) Deleting the Last Node in Singly Linked List:
+
+*In this case, the last node is removed from the list. This operation is a bit trickier than removing the first node, because the algorithm should find a node, which is previous to the tail. It can be done in three steps -*
+
+* Traverse the list and while traversing maintain the previous node address also. By the time we reach the end of the list, we will have two pointers, one pointing to the tail node and the other pointing to the node before the tail node.
+* Update previous node’s next pointer with NULL.
+* Dispose of the tail node.
+
+### 3) Deleting an Intermediate Node in Singly Linked List:
+
+*In this case, the node to be removed is always located between two nodes. Head and tail links are not updated in this case. Such a removal can be done in two steps -*
+* Similar to the previous case, maintain the previous node while traversing the list. Once we find the node to be deleted change the previous node’s next pointer to the next pointer of the node to be deleted.
+* Dispose of the current node to be deleted.
+
+```cpp
+// 1) First Case:
+
+void firstDelete() 
+{
+    struct node *delptr;
+    if(stnode == NULL)
+    {
+        cout<<"List is empty";
+    } 
+    else 
+    { 
+        delptr = stnode; 
+        stnode = stnode->nextptr;
+        free(delptr); 
+    } 
+}
+
+// 2) Second Case:
+
+void deleteSpecific(int pos)
+{
+    int i;
+    struct node *toDel, *preNode;
+ 
+    if(stnode == NULL)
+    {
+        cout<<"List is empty";
+    }
+    else
+    {
+        toDel = stnode;
+        preNode = stnode;
+ 
+        for(i=2; i<=pos; i++)
+        {
+            preNode = toDel;
+            toDel = toDel->nextptr;
+ 
+            if(toDel == NULL)
+                break;
+        }
+        if(toDel != NULL)
+        {
+            if(toDel == stnode)
+                stnode = stnode->nextptr;
+ 
+            preNode->nextptr = toDel->nextptr;
+            toDel->nextptr = NULL;
+            free(toDel);
+        }
+        else
+        {
+            cout<<" Deletion can not be possible from that position.";
+        }
+    }
+}
+
+// 3) Third Case :
+
+void lastDelete()
+{
+    struct node *delLast, *preNode;
+    if(stnode == NULL)
+    {
+        cout<<"List is empty";
+    }
+    else
+    {
+        delLast = stnode;
+        preNode = stnode;
+        
+        while(toDelLast->nextptr != NULL)
+        {
+            preNode = delLast;
+            delLast = delLast->nextptr;
+        }
+        if(delLast == stnode)
+        {
+            stnode = NULL;
+        }
+        else
+        {
+            preNode->nextptr = NULL;
+        }
+ 
+        free(delLast);//Deleting last node
+    }
+}
+```
+
