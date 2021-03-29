@@ -53,19 +53,19 @@ int ListLength(struct ListNode *head) {
 
 `Note :` *`To insert an element in the linked list at some position p, assume that after inserting the element the position of the new node is p.`*
 
-### Inserting a Node in Singly Linked List at the beginning :
+### 1) Inserting a Node in Singly Linked List at the beginning :
 
 **Here, a new node is inserted before the current head node. Only next pointer needs to be modified (new node's next pointer) and it can be done in two steps :**
 * Update the next pointer of new node, to point to the current head.
 * Update head pointer to point to the new node.
 
-### Inserting a Node in Singly Linked List at the Ending :
+### 2) Inserting a Node in Singly Linked List at the Ending :
 
 **Here, we need to modify two next pointers (last nodes next pointer and new nodes next pointers).**
 * New nodes next pointers points to NULL.
 * Last nodes next pointers points to the new node.
 
-### Inserting a Node in Singly Linked List at the Middle :
+### 3) Inserting a Node in Singly Linked List at the Middle :
 
 **Here, we are given a position where we want to insert the new node. In this case also, we need to modify two next pointers.**
 
@@ -73,6 +73,9 @@ int ListLength(struct ListNode *head) {
 * Position node’s next pointer now points to the new node.
 
 ```cpp
+#include <iostream>
+using namespace std; 
+
 class Node 
 { 
     public:
@@ -278,4 +281,3 @@ void lastDelete()
     }
 }
 ```
-
