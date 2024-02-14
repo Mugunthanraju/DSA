@@ -124,6 +124,29 @@ def infix_to_postfix(expersion):
     stack.s_clearup()
 
     return ' '.join(output)
+
+def to_infix(expression , prefix = True):
+    stack = []
+    tokens = expression.split()
+    if prefix:
+        # We're doing this because operators are in first.
+        tokens = tokens[::-1]
+        # It can be also done using another stack.
+
+    for token in tokens:
+        # print(token, ':', stack)
+        if token.isalnum():
+            stack.append(token)
+        elif token in ['+', '-', '*', '/']:
+            operand1 = stack.pop()
+            operand2 = stack.pop()
+            infix_expression = f'({operand1} {token} {operand2})' if prefix else f'({operand2} {token} {operand1})'
+            stack.append(infix_expression)
+
+    if len(stack) == 1:
+        return stack[0]
+    else:
+        raise ValueError("Invalid prefix expression")
         
 
 if __name__ == '__main__':
@@ -141,10 +164,22 @@ if __name__ == '__main__':
     #     print(decimal, ":", dec_to_bin(decimal))
     # ************************************************************
 
-    expressions = ['4*2+5*(2+1)/2', '4^2+5*(2+1)/2',  'A*(B+C)/D']
+    expressions = ['A*B+C/D', '(A-B/C)*(A/K-L)', '4*2+5*(2+1)/2', '4^2+5*(2+1)/2',  'A*(B+C)/D']
     for expr in expressions:
-        print(infix_to_postfix(expr))
-    # 4*2+5*(2+1)/2 = 4 2 * 5 2 1 + * 2 / +
-    # 4^2+5*(2+1)/2 = 4 2 ^ 5 2 1 + * 2 / +
-    # A*(B+C)/D = A B C + * D /
+        print( 'Infix : ', expr, '<=> Postfix : ' ,infix_to_postfix(expr))
+    print()
+    # (A-B/C)*(A/K-L) : postfix :  A B C / - A K / L - *
+    # 4*2+5*(2+1)/2 : postfix :  4 2 * 5 2 1 + * 2 / +
+    # ************************************************************
+
+    prefix_expression = "+ * 5 4 - 7 2"
+    infix_expression = to_infix(prefix_expression)
+    print("Prefix Expression:", prefix_expression)
+    print("Infix Expression:", infix_expression)
+    print()
+    # postfix_expression = "a b * c +"
+    postfix_expression = "A B C / - A K / L - *"
+    infix_expression = to_infix(postfix_expression, False)
+    print("Postfix Expression:", postfix_expression)
+    print("Infix Expression:", infix_expression)
     # ************************************************************
