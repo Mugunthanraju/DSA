@@ -94,8 +94,36 @@ def dec_to_bin(num):
     return ''.join(map(str, bin_list))
 
 def infix_to_postfix(expersion):
-    # TODO : Implement this method in couple of days.
-    pass
+    precedence = {
+        '^': 4,
+        '*': 3,
+        '/': 3,
+        '+': 2,
+        '-': 2,
+        '(': 1,
+    }
+    output = []
+    stack = Stack()
+
+    for char in expersion:
+        if char.isalnum():
+            output.append(char)
+        elif char == '(':
+            stack.s_push(char)
+        elif char == ')':
+            while stack.s_peek() != '(':
+                output.append(stack.s_pop())
+            stack.s_pop()
+        else:
+            while (not stack.s_isEmpty()) and precedence[char] <= precedence[stack.s_peek()]:
+                output.append(stack.s_pop())
+            stack.s_push(char)
+    
+    while (not stack.s_isEmpty()):
+        output.append(stack.s_pop())
+    stack.s_clearup()
+
+    return ' '.join(output)
         
 
 if __name__ == '__main__':
@@ -107,5 +135,16 @@ if __name__ == '__main__':
     # ]
     # for bracket_list in group_brackets_list:
     #     print(is_symbols_balanced(bracket_list))
-    for decimal in range(231, 240):
-        print(decimal, ":", dec_to_bin(decimal))
+    # ************************************************************
+
+    # for decimal in range(231, 240):
+    #     print(decimal, ":", dec_to_bin(decimal))
+    # ************************************************************
+
+    expressions = ['4*2+5*(2+1)/2', '4^2+5*(2+1)/2',  'A*(B+C)/D']
+    for expr in expressions:
+        print(infix_to_postfix(expr))
+    # 4*2+5*(2+1)/2 = 4 2 * 5 2 1 + * 2 / +
+    # 4^2+5*(2+1)/2 = 4 2 ^ 5 2 1 + * 2 / +
+    # A*(B+C)/D = A B C + * D /
+    # ************************************************************
