@@ -122,8 +122,21 @@ def infix_to_postfix(expersion):
     while (not stack.s_isEmpty()):
         output.append(stack.s_pop())
     stack.s_clearup()
-
+# ))2-7(+)4*5(( = ((2-7)+(4*5)) = 
     return ' '.join(output)
+
+def infix_to_prefix(expression):
+    tokens = list(expression)[::-1]
+
+    for i in range(len(tokens)):
+        if tokens[i] == '(': 
+            tokens[i] = ')'
+        elif tokens[i] == ')': 
+            tokens[i] = '('
+        else: continue
+    
+    prefix =  infix_to_postfix(''.join(tokens))
+    return prefix[::-1]
 
 def to_infix(expression , prefix = True):
     stack = []
@@ -164,22 +177,21 @@ if __name__ == '__main__':
     #     print(decimal, ":", dec_to_bin(decimal))
     # ************************************************************
 
-    expressions = ['A*B+C/D', '(A-B/C)*(A/K-L)', '4*2+5*(2+1)/2', '4^2+5*(2+1)/2',  'A*(B+C)/D']
+    expressions = ['((5*4)+(7-2))', 'A*B+C/D', '(A-B/C)*(A/K-L)', '4*2+5*(2+1)/2', '4^2+5*(2+1)/2',  'A*(B+C)/D']
     for expr in expressions:
         print( 'Infix : ', expr, '<=> Postfix : ' ,infix_to_postfix(expr))
-    print()
-    # (A-B/C)*(A/K-L) : postfix :  A B C / - A K / L - *
-    # 4*2+5*(2+1)/2 : postfix :  4 2 * 5 2 1 + * 2 / +
+        print( 'Infix : ', expr, '<=> Prefix : ' ,infix_to_prefix(expr))
+        print()
     # ************************************************************
 
-    prefix_expression = "+ * 5 4 - 7 2"
-    infix_expression = to_infix(prefix_expression)
-    print("Prefix Expression:", prefix_expression)
-    print("Infix Expression:", infix_expression)
-    print()
-    # postfix_expression = "a b * c +"
-    postfix_expression = "A B C / - A K / L - *"
-    infix_expression = to_infix(postfix_expression, False)
-    print("Postfix Expression:", postfix_expression)
-    print("Infix Expression:", infix_expression)
+    # prefix_expression = "+ * 5 4 - 7 2"
+    # infix_expression = to_infix(prefix_expression)
+    # print("Prefix Expression:", prefix_expression)
+    # print("Infix Expression:", infix_expression)
+    # print()
+    # # postfix_expression = "a b * c +"
+    # postfix_expression = "A B C / - A K / L - *"
+    # infix_expression = to_infix(postfix_expression, False)
+    # print("Postfix Expression:", postfix_expression)
+    # print("Infix Expression:", infix_expression)
     # ************************************************************
