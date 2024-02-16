@@ -44,3 +44,7 @@ if __name__ == '__main__':
     print("Clearing the queue...")
     queue.q_clear()
     queue.q_display()
+
+
+# Queue can used for problems like :
+    # reverse first k elements in queue
