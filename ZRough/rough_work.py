@@ -37,39 +37,63 @@
 
 # print(anagram("earth", "heart"))
 # ************************************************************
-def next_greater_element_non_circle(nums):
-    stack = []
-    results = [-1] * len(nums)
+# def next_greater_element_non_circle(nums):
+#     stack = []
+#     results = [-1] * len(nums)
 
-    for i in range(len(nums)-1, -1, -1):
-        while stack and stack[-1] <= nums[i]:
-            stack.pop()
-        if stack:
-            results[i] = stack[-1]
-        stack.append(nums[i])
+#     for i in range(len(nums)-1, -1, -1):
+#         while stack and stack[-1] <= nums[i]:
+#             stack.pop()
+#         if stack:
+#             results[i] = stack[-1]
+#         stack.append(nums[i])
     
-    stack.clear()
-    return nums, results
+#     stack.clear()
+#     return nums, results
 
-print(next_greater_element_non_circle([2,4,1,3,1,6]))
-print(next_greater_element_non_circle([11,13,3,10,7,21,26]))
+# print(next_greater_element_non_circle([2,4,1,3,1,6]))
+# print(next_greater_element_non_circle([11,13,3,10,7,21,26]))
 
-print()
+# print()
 
-def next_smaller_element_non_circle(nums):
-    stack = []
-    results = [-1] * len(nums)
+# def next_smaller_element_non_circle(nums):
+#     stack = []
+#     results = [-1] * len(nums)
 
-    for i in range(len(nums)-1, -1, -1):
-        while stack and stack[-1] > nums[i]:
-            stack.pop()
-        if stack:
-            results[i] = stack[-1]
-        stack.append(nums[i])
+#     for i in range(len(nums)-1, -1, -1):
+#         while stack and stack[-1] > nums[i]:
+#             stack.pop()
+#         if stack:
+#             results[i] = stack[-1]
+#         stack.append(nums[i])
     
-    stack.clear()
-    return nums, results
+#     stack.clear()
+#     return nums, results
 
-print(next_smaller_element_non_circle([2,4,1,3,1,6]))
-print(next_smaller_element_non_circle([11,13,3,10,7,21,26]))
+# print(next_smaller_element_non_circle([2,4,1,3,1,6]))
+# print(next_smaller_element_non_circle([11,13,3,10,7,21,26]))
+# ************************************************************
+def topKFrequent(nums, k):
+    frequency = dict.fromkeys(nums, 0)
+    grouping = [[] for i in range(len(nums))]
+    result = []
+
+    for num in nums:
+        frequency[num] += 1
+
+    for key, value in frequency.items():
+        grouping[value - 1].append(key)
+
+    for group in grouping[::-1]:
+        if group:
+            for num in group:
+                result.append(num)
+                if len(result) == k:
+                    return result
+        
+    return []
+        
+print(topKFrequent([3,0,1,0], 1))       # [0]
+print(topKFrequent([1,1,1,2,2,3], 2))   # [1, 2]
+print(topKFrequent([1], 1))             # [1]
 # ************************************************************
