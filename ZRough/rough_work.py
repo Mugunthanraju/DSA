@@ -73,27 +73,55 @@
 # print(next_smaller_element_non_circle([2,4,1,3,1,6]))
 # print(next_smaller_element_non_circle([11,13,3,10,7,21,26]))
 # ************************************************************
-def topKFrequent(nums, k):
-    frequency = dict.fromkeys(nums, 0)
-    grouping = [[] for i in range(len(nums))]
-    result = []
+# LC: 347. Top K Frequent Elements
+# def topKFrequent(nums, k):
+#     frequency = dict.fromkeys(nums, 0)
+#     grouping = [[] for i in range(len(nums))]
+#     result = []
 
-    for num in nums:
-        frequency[num] += 1
+#     for num in nums:
+#         frequency[num] += 1
 
-    for key, value in frequency.items():
-        grouping[value - 1].append(key)
+#     for key, value in frequency.items():
+#         grouping[value - 1].append(key)
 
-    for group in grouping[::-1]:
-        if group:
-            for num in group:
-                result.append(num)
-                if len(result) == k:
-                    return result
+#     for group in grouping[::-1]:
+#         if group:
+#             for num in group:
+#                 result.append(num)
+#                 if len(result) == k:
+#                     return result
         
-    return []
+#     return []
         
-print(topKFrequent([3,0,1,0], 1))       # [0]
-print(topKFrequent([1,1,1,2,2,3], 2))   # [1, 2]
-print(topKFrequent([1], 1))             # [1]
+# print(topKFrequent([3,0,1,0], 1))       # [0]
+# print(topKFrequent([1,1,1,2,2,3], 2))   # [1, 2]
+# print(topKFrequent([1], 1))             # [1]
+# ************************************************************
+# LC: 735. Asteroid Collision
+def asteroidCollision(asteroids):
+    stack = []
+
+    for asteroid in asteroids:
+
+        if stack and stack[-1] > 0 and asteroid < 0:
+            popin = False
+            while stack and stack[-1] > 0 and asteroid < 0:
+                if abs(stack[-1]) < abs(asteroid):
+                    popin = True
+                    stack.pop()
+                elif abs(stack[-1]) > abs(asteroid):
+                    popin = False
+                    break
+                else:
+                    popin = False
+                    stack.pop()
+                    break
+            if popin:
+                stack.append(asteroid)
+        else:
+            stack.append(asteroid)
+                
+    return stack
+print(asteroidCollision([-2,-2,1,-2]))
 # ************************************************************
