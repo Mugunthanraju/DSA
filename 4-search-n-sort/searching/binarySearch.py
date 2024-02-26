@@ -3,7 +3,7 @@ def binary_search(items, target):
     tail = len(items) - 1
     mid = (head + tail) // 2
 
-    while head < tail:
+    while head <= tail:
         if items[mid] == target:
             return True
         elif items[mid] > target:
@@ -20,7 +20,7 @@ def binary_search_for_index(items, target):
     tail = len(items) - 1
     mid = (head + tail) // 2
 
-    while head < tail:
+    while head <= tail:
         if items[mid] == target:
             return mid
         elif items[mid] > target:
@@ -36,7 +36,7 @@ def binary_search_recursive(items, target, head, tail):
     
     mid = (head + tail) // 2
 
-    if head < tail:
+    if head <= tail:
         if items[mid] == target:
             return True
         elif items[mid] > target:
@@ -50,7 +50,7 @@ def binary_search_recursive_for_index(items, target, head, tail):
     
     mid = (head + tail) // 2
 
-    if head < tail:
+    if head <= tail:
         if items[mid] == target:
             return mid
         elif items[mid] > target:
