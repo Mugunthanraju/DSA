@@ -13,6 +13,7 @@ Hash Search is basically making use of Hash Table (Dictionary in Python)
 def hash_strings(word):
     total = 0
     for c in word:
+        # TODO: ord method is to convert character to integer
         total += ord(c)
     return total
 # ************************************************************
