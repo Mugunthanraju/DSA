@@ -48,7 +48,7 @@ def partition(array, low, high):
             i = i + 1
  
             # Swapping element at i with element at j
-            (array[i], array[j]) = (array[j], array[i])
+            array[i], array[j] = array[j], array[i]
  
     # Swap the pivot element with the greater element specified by i
     (array[i + 1], array[high]) = (array[high], array[i + 1])

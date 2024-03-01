@@ -19,31 +19,31 @@ def mergeSort(items):
     
     mid = len(items) // 2
 
-    left = mergeSort(items[:mid])
-    right = mergeSort(items[mid:])
+    left_half = mergeSort(items[:mid])
+    right_half = mergeSort(items[mid:])
 
-    lp = 0
-    rp = 0
-    pos = 0
+    left_pointer = 0
+    right_pointer = 0
+    position = 0
 
-    while pos < len(items) and lp < len(left) and rp < len(right):
-        if left[lp] < right[rp]:
-            items[pos] = left[lp]
-            lp += 1
+    while position < len(items) and left_pointer < len(left_half) and right_pointer < len(right_half):
+        if left_half[left_pointer] < right_half[right_pointer]:
+            items[position] = left_half[left_pointer]
+            left_pointer += 1
         else:
-            items[pos] = right[rp]
-            rp += 1
-        pos += 1
+            items[position] = right_half[right_pointer]
+            right_pointer += 1
+        position += 1
     
-    while pos < len(items) and lp < len(left):
-        items[pos] = left[lp]
-        lp += 1
-        pos += 1
+    while position < len(items) and left_pointer < len(left_half):
+        items[position] = left_half[left_pointer]
+        left_pointer += 1
+        position += 1
 
-    while pos < len(items) and rp < len(right):
-        items[pos] = right[rp]
-        rp += 1
-        pos += 1
+    while position < len(items) and right_pointer < len(right_half):
+        items[position] = right_half[right_pointer]
+        right_pointer += 1
+        position += 1
 
     return items
 
