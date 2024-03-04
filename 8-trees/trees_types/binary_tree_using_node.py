@@ -43,5 +43,16 @@ if __name__ == '__main__':
     root.left.right = Node(5)
     root.right.right = Node(6)
 
+    # r = setNode(1)
+    # setNode(2, r)
+    # setNode(3, r)
+    # setNode(4, r)
+    # setNode(5, r)
+    # setNode(6, r)
+
     print("Postorder traversal of binary tree is:")
+    preorder(root)
+    print()
+    inorder(root)
+    print()
     postorder(root)
