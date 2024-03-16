@@ -23,6 +23,7 @@
 ### Comparison of Linked List, Array & Dynamic Array :
 
 ![Comparison](.\img\Comparison.png)
-
 ***
 
+## Tricks and Tips
+- If something to do with Nth from last in linked list then use fast and slow pointer (not typical one). Usually, the fast should start from Nth (in actual order) node and fast should reach at end (parallely slow is also traversing). If fast reached end, then the slow pointing node will be the target of before node.

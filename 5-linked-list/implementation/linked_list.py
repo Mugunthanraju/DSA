@@ -21,6 +21,27 @@ def convertToLinkedList(arr):
             temp = temp.next
     return head
 
+def lengthOfLL(head):
+    if not head:
+        return 0
+    
+    total, temp = 0, head
+    while temp != None:
+        total += 1
+        temp = temp.next
+    
+    return total
+
+def searchElement(head, target):
+    if head:
+        position, temp = 0, head
+        while temp != None:
+            position += 1
+            if temp.data == target:
+                return position
+            temp = temp.next
+    return -1
+
 def removeXth(head, x):
     if not head:
         return head
@@ -115,18 +136,19 @@ def insertAtTarget(head, value, target):
         temp = temp.next
     return head
 
-
-
 def main():
     print("Linked List implementation \n")
     head = convertToLinkedList([2,4,6,8])
+    output(head)
+    print("Lenght of the Linked List is", lengthOfLL(head))
+    # print("Given target position is at", searchElement(head, 4))
     # result = removeXth(head, 2)
     # result = removeValue(head,4)
     # result = insertHead(head,1)
     # result = insertTail(head,1)
     # result = insertKthElement(head,1, 3)
-    result = insertAtTarget(head,1, 6)
-    output(result)
+    # result = insertAtTarget(head,1, 6)
+    # output(result)
 
 
 
