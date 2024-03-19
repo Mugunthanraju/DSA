@@ -123,5 +123,30 @@ def asteroidCollision(asteroids):
             stack.append(asteroid)
                 
     return stack
-print(asteroidCollision([-2,-2,1,-2]))
+# print(asteroidCollision([-2,-2,1,-2]))
+# ************************************************************
+def romanToInt(s):
+    """
+    13.LC : Roman numbers to Integer
+    Approach : We traverse roman numbers from left to right; if a current is less than next then subract the current from total.
+    """
+    rom_nums = {
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000,
+    }
+    
+    ans = 0
+    for n in range(len(s)):
+        if n < len(s) - 1 and rom_nums[s[n]] < rom_nums[s[n+1]]:
+            ans -= rom_nums[s[n]]
+        else:
+            ans += rom_nums[s[n]]
+    
+    return ans
+print(romanToInt("MDCCCLXXXIV")) # 1884
 # ************************************************************
