@@ -314,6 +314,14 @@ def middleNode(head = None):
 
 def deleteMiddle(head=None):
     head = convertLL([1,2,3,4,5,6], False)
+    """
+    2095.LC :  Delete the Middle Node of a Linked List
+    Brute Force : Count the nodes and find the middle element position (by n/2 + 1) then traverse to that pos and delete it.
+    (or)
+    Optimal Approach : Use fast & slow (Hare & Tortoise) pointer to find the middle element.
+    TC : O(N/2)
+    SC : O(1)
+    """
     fast = slow = head
     prev = None
     while fast and fast.next:
@@ -324,7 +332,81 @@ def deleteMiddle(head=None):
         return None
     prev.next = slow.next if slow else None
     return head
-        
+
+def hasCycle(head=None):
+    head, tail = convertLL([1,2], True)
+    looph, loopt = convertLL([3,4,5,6,7], True)
+    tail.next = loopt.next = looph
+
+    """
+    141.LC : Linked List Cycle
+    Brute Force Approach : Using HashMap or HashSet and storing every node while traversing; if we find a node which is also stored then its a loop.
+    TC : O(N x log2N)
+    SC : O(N)
+
+    (or)
+
+    Optimal Approach (below solution): Using Fast and Slow (Hare and Tortoise) pointer to find the loop if slow == fast while traversing.
+    TC : O(N)
+    SC : O(1)
+    """
+    slow = fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            print(slow.val)
+            return True
+    return False
+
+def lengthLoop(head=None):
+    head, tail = convertLL([1, 8, 9], True)
+    looph, loopt = convertLL([2,3,4,5,6,7], True)
+    tail.next = loopt.next = looph
+
+    count = 0
+    slow = fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            count += 1
+            fast = fast.next
+            while fast != slow:
+                count += 1
+                fast = fast.next
+            return count
+    return count
+
+def detectCycleStart(head=None):
+    head, tail = convertLL([1, 8, 9], True)
+    looph, loopt = convertLL([2,3,4,5,6,7], True)
+    tail.next = loopt.next = looph
+    """
+    142.LC : Linked List Cycle II
+    Brute Force Approach : Using HashMap or HashSet and storing every node while traversing; if we find a node which is also stored then its a loop's staring pointing
+    TC : O(N x log2N)
+    SC : O(N)
+
+    (or)
+
+    Optimal Approach (below solution): Using Fast and Slow (Hare and Tortoise) pointer to find the loop if slow == fast while traversing then take a pointer (i.e., ans) and start traversing from head while slow pointer traversing if ans == slow then its a loop's staring pointing.
+    TC : O(N + M) {N = Total node count, M = From head to start of loop}
+    SC : O(1)
+    """
+    slow = fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            ans = head
+            while ans != slow:
+                ans = ans.next
+                slow = slow.next
+            return ans
+    return None
+    
+
 
 ##################################################################
 def main():
@@ -353,8 +435,14 @@ def main():
     # print(result.val)
     # result = middleNode()
     # print(result.val if result else None)
-    result = deleteMiddle()
-    output(result)
+    # result = deleteMiddle()
+    # output(result)
+    # result = hasCycle()
+    # print(result)
+    # result = lengthLoop()
+    # print(result)
+    result = detectCycleStart()
+    print(result.val if result else "None")
 
 
 
