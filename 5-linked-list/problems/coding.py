@@ -1,11 +1,11 @@
 class LL:
-    def __init__(self, data, next=None) -> None:
-        self.val = data
+    def __init__(self, val, next=None) -> None:
+        self.val = val
         self.next = next
 
 class DD:
-    def __init__(self, data, next=None, back=None) -> None:
-        self.val = data
+    def __init__(self, val, next=None, back=None) -> None:
+        self.val = val
         self.next = next
         self.back = back
 
@@ -21,17 +21,18 @@ def convertLL(items, last=False):
             temp = temp.next
     return [head, prev] if last else head
 
-def convertDD(items):
-    head = None
+def convertDD(items, last=False):
+    prev = None
     if len(items) < 1:
-        return head
+        return None
     
     head = temp = DD(items[0])
     for item in items[1:]:
         temp.next = DD(item)
         temp.next.back = temp
+        prev = temp
         temp = temp.next
-    return head
+    return [head, prev] if last else head
 
 def output(head):
     temp = head
@@ -41,24 +42,7 @@ def output(head):
         temp = temp.next
     print()
 ##################################################################
-def reverseDLL(head):
-    """
-    Using Stack and traversing for 2 times (1 for storing data and 2 for replacing data)
-    TC : O(2N)
-    SC : O(N)
-    (or)
-    Below Solution : Just swapping pointers
-    TC : O(N)
-    SC : O(1)
-    """
-    if not head:
-        return
-    temp = head
-    while temp:
-        head = temp
-        temp.next, temp.back = temp.back, temp.next
-        temp = temp.back
-    return head
+# Singlly Linked List ( Medium Level)
 
 def addTwoNumbers(num1=None, num2=None):
     num1 = convertLL([1,2,3])
@@ -405,9 +389,194 @@ def detectCycleStart(head=None):
                 slow = slow.next
             return ans
     return None
+##################################################################
+# Doubly Linked List ( Medium Level)
+
+def reverseDLL(head):
+    """
+    Using Stack and traversing for 2 times (1 for storing data and 2 for replacing data)
+    TC : O(2N)
+    SC : O(N)
+    (or)
+    Below Solution : Just swapping pointers
+    TC : O(N)
+    SC : O(1)
+    """
+    if not head:
+        return
+    temp = head
+    while temp:
+        head = temp
+        temp.next, temp.back = temp.back, temp.next
+        temp = temp.back
+    return head
+
+def deleteAllOccurrences(head = None, k = 0):
+    head = convertDD([10, 4, 10, 3, 5, 20, 10])
+    k = 10
+
+    """
+    TC : O(N)
+    SC : O(1)
+    """
     
+    temp = head
+    while temp:
+        if temp.val == k:
+            if temp == head:
+                head = temp.next
+            
+            prev = temp.back
+            after = temp.next
+            if after: after.back = prev
+            if prev: prev.next = after
+
+            #TODO: Make deleted node pointing NULL for both back and next.
+            temp.back = None
+            temp.next = None
+            temp = after
+        
+        else: temp = temp.next
+    return head
+
+def pairSum(head=None, addUp=1):
+    head = convertDD([1,2,3,4,5,9])
+    addUp = 6
+
+    """
+    You are given a SORTED doubly linked list of size 'n', consisting of DISTINCT positive integers, and a number 'addUp'.
+    Find out all the pairs in the doubly linked list with sum equal to 'addUp'.
+
+    Approach 1 >| TC : O(N^2) & SC : O(1) {if we don't consider resultant storage} or O(N) {inclusive of resultant storage}
+
+    resultant = []
+    temp = head
+    while temp:
+        after = temp.next
+        while after:
+            if temp.val + after.val == addUp:
+                resultant.append([temp.val, after.val])
+            after = after.next
+        temp = temp.next
+    return resultant
+
+    Approach 2 (Below solution):
+
+    TC : O(2N)
+    SC : O(1) {if we don't consider pairs storage} or O(N) {inclusive of pairs storage}
+    """
+
+    temp = tail = head
+    pairs = []
+    while tail.next:
+        tail = tail.next
+    
+    while temp != tail and temp.val <= tail.val:
+        if temp.val + tail.val == addUp:
+            pairs.append([temp.val, tail.val])
+            temp = temp.next
+            tail = tail.back
+        elif temp.val + tail.val < addUp:
+            temp = temp.next
+        else:
+            tail = tail.back
+    
+    return pairs
+
+def removeDuplicates(head=None):
+    head = convertDD([1, 1, 2, 2, 2, 3, 3, 4, 4])
+    """
+    You are given a sorted doubly linked list of size 'n'.
+    Remove all the duplicate nodes present in the linked list.
+    TC : O(N)
+    SC : O(1)
+    """
+    temp = head
+    while temp and temp.next:
+        after = temp.next
+        while after and temp.val == after.val:
+            after = after.next
+        if after: after.back = temp
+        temp.next = after
+        temp = after
+    return head
+##################################################################
+# Singlly Linked List ( Hard Level)
+
+def reverseKGroup(head=None, k=2):
+    # head = convertLL([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    # k = 3
+    head = convertLL([1, 2, 3, 4, 5,])
+
+    """
+    25.LC : Reverse Nodes in k-Group
+
+    Given the head of a linked list, reverse the nodes of the list k at a time, and return the modified list.
+
+    TC : O(N) {Reversing the list} + O(N) {finding the Kth node} ~ O(2N)
+    SC : O(1) {We aren't using extra space rather we just changing the pointers}
+    """
+    def reversell(top): # Helper method for reversing the given linked list
+        current, before = top, None
+        while current:
+            after = current.next
+            current.next = before
+            before = current
+            current = after
+    def kthNode(temp, k): # Helper method for finding the kth linked list node
+        while temp and k > 1:
+            temp = temp.next
+            k -= 1
+        return temp
+    
+    temp = head
+    prev= None
+    while temp:
+        kth = kthNode(temp, k)
+        if not kth:
+            if prev: prev.next = temp
+            break
+        then = kth.next
+        kth.next = None
+        reversell(temp)
+        if temp == head:
+            head = kth
+        else:
+            prev.next = kth
+        prev = temp
+        temp = then
+    return head
+
+def rotateRight(head=None, k=1):
+    head = convertLL([1,2,3,4,5])
+    k = 2
+
+    """
+    61.LC Rotate List
+    Given the head of a linked list, rotate the list to the right by k places.
+    """
+    n = 1
+    tail = head    
+    while tail and tail.next:
+        n += 1
+        tail = tail.next
+    if n > 0:
+        tail.next = head
+        # k % n = will show the node which is gonna be head 
+        # n - k % n = will show the node which is gonna be last node in LL.
+        cut = n - k % n
+        if cut > 0:
+            temp = head
+            cut -= 1
+            while temp and cut > 0:
+                cut -= 1
+                temp = temp.next
+            head = temp.next
+            temp.next = None
+    return head
 
 
+        
 ##################################################################
 def main():
     array = [29, 47, 65, 83]
@@ -415,6 +584,27 @@ def main():
     # output(head1)
     head2 = convertDD(array)
     # output(head2)
+
+    #TODO: # Singlly Linked List (Hard Level)
+    # result = reverseKGroup()
+    # output(result)
+    result = rotateRight()
+    output(result)
+
+
+
+    #TODO: Doubly Linked List (Medium Level)
+    # result = deleteAllOccurrences()
+    # output(result)
+    # result = pairSum()
+    # print(result)
+    # result = removeDuplicates()
+    # output(result)
+
+
+
+    #TODO: Singlly Linked List (Medium Level)
+
     # result = reverseDLL(head2)
     # output(result)
     # result = addTwoNumbers()
@@ -441,11 +631,8 @@ def main():
     # print(result)
     # result = lengthLoop()
     # print(result)
-    result = detectCycleStart()
-    print(result.val if result else "None")
-
-
-
+    # result = detectCycleStart()
+    # print(result.val if result else "None")
 
 ##################################################################
 if __name__ == '__main__':
