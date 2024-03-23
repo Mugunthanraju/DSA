@@ -29,6 +29,9 @@ It occurs when the above conditions do not occur.
 The space complexity for quicksort is O(log n)
 """
 
+
+# [9, 1, 8, 2, 7, 3, 5, 6, 4]
+#^
 # Function to find the partition position
 def partition(array, low, high):
     # choose the rightmost element as pivot
