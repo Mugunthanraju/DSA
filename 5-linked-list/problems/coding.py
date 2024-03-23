@@ -554,6 +554,9 @@ def rotateRight(head=None, k=1):
     """
     61.LC Rotate List
     Given the head of a linked list, rotate the list to the right by k places.
+
+    TC : O(N + (N - K % N))
+    SC : O(1)
     """
     n = 1
     tail = head    
