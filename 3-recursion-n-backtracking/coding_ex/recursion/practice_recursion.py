@@ -1,4 +1,17 @@
 # ************************************************************************************************
+def countSumOfK(index, arr, total, addup):
+    if len(arr) == index:
+        if total == addup:
+            return 1
+        return 0
+    addup += arr[index]
+    left  = countSumOfK(index+1, arr, total, addup) # pickup
+    addup -= arr[index]
+    right = countSumOfK(index+1, arr, total, addup) # not to pickup
+    return left + right
+print(countSumOfK(0, [1,2,1], 2, 0))
+
+# ************************************************************************************************
 def sumOfK(index, ds, arr, total, addup):
     if len(arr) == index:
         if total == addup:
@@ -10,7 +23,7 @@ def sumOfK(index, ds, arr, total, addup):
     ds.pop()
     addup -= arr[index]
     sumOfK(index+1, ds, arr, total, addup) # not to pickup
-sumOfK(0, [], [1,2,1], 2, 0)
+# sumOfK(0, [], [1,2,1], 2, 0)
 
 # ************************************************************************************************
 def subArray(index , ds, arr, n):
