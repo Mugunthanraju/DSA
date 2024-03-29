@@ -147,6 +147,55 @@ def romanToInt(s):
         else:
             ans += rom_nums[s[n]]
     
-    return ans
-print(romanToInt("MDCCCLXXXIV")) # 1884
+#     return ans
+# print(romanToInt("MDCCCLXXXIV")) # 1884
+# ************************************************************
+# def maxProduct(nums):
+#     reverser = nums[::-1]
+#     for i in range(1, len(nums)):
+#         # print(nums[i], nums[i-1], 1, nums[i-1] or 1 )
+#         nums[i] *= nums[i-1] or 1
+#         # print(nums[i])
+#         # print(reverser[i], reverser[i-1], 1, reverser[i-1] or 1)
+#         reverser[i] *= reverser[i-1] or 1
+#         # print(reverser[i])
+#     return max(nums + reverser)
+# print(maxProduct([2,3,0,-2,4]))
+
+def maxProduct(nums):
+    """
+    152. Maximum Product Subarray
+
+    Example 1:
+    Input: nums = [2,3,-2,4]
+    Output: 6
+    Explanation: [2,3] has the largest product 6.
+
+    Example 2:
+    Input: nums = [-2,0,-1]
+    Output: 0
+    Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
+
+    Given an integer array nums, find a subarray that has the largest product, and return the product.
+    The test cases are generated so that the answer will fit in a 32-bit integer.
+
+    RC ##
+    APPROACH : KADANES ALGORITHM ##
+    
+	TIME COMPLEXITY : O(N) ##
+	SPACE COMPLEXITY : O(1) ##
+    
+    1. Edge Case : Negative * Negative = Positive
+    2. So we need to keep track of minimum values also, as they can yield maximum values.
+    """
+    
+    global_max = prev_max = prev_min = nums[0]
+    for num in nums[1:]:
+        curr_min = min(prev_max*num, prev_min*num, num)
+        curr_max = max(prev_max*num, prev_min*num, num)
+        global_max= max(global_max, curr_max)
+        prev_max = curr_max
+        prev_min = curr_min
+    return global_max
+print(maxProduct([2,3,0,-2,4]))
 # ************************************************************
