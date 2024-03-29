@@ -1,4 +1,68 @@
 # ************************************************************************************************
+def premute(nums):
+    """
+    46.LC :  Permutations
+    """
+    import copy
+    def recursePermute(nums, ds, ans, freq):
+        """
+        TC : O(N! x N)
+        SC : O(N) + O(N) ~ O(2N)
+        """
+        if len(ds) == len(nums):
+            ans.append(copy.deepcopy(ds))
+            return
+        for i in range(len(nums)):
+            if not freq[i]:
+                freq[i] = True
+                ds.append(nums[i])
+                recursePermute(nums, ds, ans, freq)
+                ds.pop()
+                freq[i] = False
+    
+    ans = list()
+    ds = list()
+    freq = [False] * len(nums)
+    recursePermute(nums, ds, ans, freq)
+    return ans
+print(premute([1,2,3]))
+
+
+# ************************************************************************************************
+def subsetsWithDup(nums):
+    nums.sort()
+    setList = list()
+    import copy
+    def findSubSets(ind, ds, nums, setList):
+        setList.append(copy.deepcopy(ds)) # setList.append([ x for x in ds])
+        for i in range(ind, len(nums)):
+            if i != ind and nums[i] == nums[i-1]: continue
+            ds.append(nums[i])
+            findSubSets(i+1, ds, nums, setList)
+            ds.pop()
+    findSubSets(0, list(), nums, setList)
+    return setList
+# print(subsetsWithDup([1,2,2]))
+# print(subsetsWithDup([1,2,2,2,3,3]))
+
+# ************************************************************************************************
+def sumSubSet(i, subSet, total, arr):
+    """
+    TC : O(2^N) {Recusrion i.e., 2^N combination} + O(2^Nlog(2^N)) {Sorting}
+    SC : O(2^N) {Recursion stack trace}
+    """
+    if len(arr) <= i:
+        subSet.append(total)
+        return
+    total += arr[i]
+    sumSubSet(i+1, subSet, total, arr) 
+    total -= arr[i]
+    sumSubSet(i+1, subSet, total, arr)
+# subSet = list()
+# sumSubSet(0, subSet, 0, [3, 1, 2])
+# print(sorted(subSet))
+
+# ************************************************************************************************
 def countSumOfK(index, arr, total, addup):
     if len(arr) == index:
         if total == addup:
@@ -9,7 +73,7 @@ def countSumOfK(index, arr, total, addup):
     addup -= arr[index]
     right = countSumOfK(index+1, arr, total, addup) # not to pickup
     return left + right
-print(countSumOfK(0, [1,2,1], 2, 0))
+# print(countSumOfK(0, [1,2,1], 2, 0))
 
 # ************************************************************************************************
 def sumOfK(index, ds, arr, total, addup):
