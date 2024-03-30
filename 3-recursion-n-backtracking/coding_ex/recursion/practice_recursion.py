@@ -1,32 +1,55 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ BACKTRACKING ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+def queens():
+    pass
+
 # ************************************************************************************************
 def premute(nums):
     """
-    46.LC :  Permutations
+    46.LC : Permutations
     """
-    import copy
-    def recursePermute(nums, ds, ans, freq):
-        """
-        TC : O(N! x N)
-        SC : O(N) + O(N) ~ O(2N)
-        """
-        if len(ds) == len(nums):
-            ans.append(copy.deepcopy(ds))
-            return
-        for i in range(len(nums)):
-            if not freq[i]:
-                freq[i] = True
-                ds.append(nums[i])
-                recursePermute(nums, ds, ans, freq)
-                ds.pop()
-                freq[i] = False
+    # import copy
+    # def recursePermute(nums, ds, ans, freq):
+    #     """
+    #     TC : O(N! x N)
+    #     SC : O(N) + O(N) ~ O(2N)
+    #     """
+    #     if len(ds) == len(nums):
+    #         ans.append(copy.deepcopy(ds))
+    #         return
+    #     for i in range(len(nums)):
+    #         if not freq[i]:
+    #             freq[i] = True
+    #             ds.append(nums[i])
+    #             recursePermute(nums, ds, ans, freq)
+    #             ds.pop()
+    #             freq[i] = False
+    # ans = list()
+    # ds = list()
+    # freq = [False] * len(nums)
+    # recursePermute(nums, ds, ans, freq)
+    # return ans
     
-    ans = list()
-    ds = list()
-    freq = [False] * len(nums)
-    recursePermute(nums, ds, ans, freq)
-    return ans
-print(premute([1,2,3]))
+    ansOpt = list()
+    def recurseOptimise(ind, arr):
+        """
+        *************************** BACKTRACKING *****************************************
+        TC : O(N! x N) {Process of recursion x Storing the answer}
+        SC : O(1) ~ No extra space for process other than answer and recursion stack trace.
+        """
+        if ind >= len(arr):
+            ansOpt.append(arr[:])
+            return
+        for i in range(ind, len(arr)):
+            # Backtracking is happening in this loop {exactly : using swap process}
+            arr[i], arr[ind] = arr[ind], arr[i]
+            recurseOptimise(ind+1, arr)
+            arr[i], arr[ind] = arr[ind], arr[i]
+    recurseOptimise(0, nums)
+    return ansOpt
+# print(premute([1,2,3]))
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RECURSION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # ************************************************************************************************
 def subsetsWithDup(nums):
