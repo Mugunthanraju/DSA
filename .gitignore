@@ -51,3 +51,4 @@ package.nls.*.json
 l10n/
 *tempCodeRunnerFile.py
 *.exe
+*.class
