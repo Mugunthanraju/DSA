@@ -352,6 +352,11 @@ def verticalTraversal(root):
     return result
 
 def isSymmetric(root) -> bool:
+    """
+    101.LC : Symmetric Tree
+    TC : O(N)
+    SC : O(N)
+    """
     if not root:
         return True
 
@@ -364,7 +369,156 @@ def isSymmetric(root) -> bool:
     
     return isSymmetricHelp(root.left, root.right)
 
+def rootToNode(root, target):
+    """
+    TC : O(N)
+    SC : O(H) < H is Height of the root >
+    """
+    result = list()
+    if root:
+        def findThePath(node, target):
+            nonlocal result
+            if node is None:
+                return False
+            
+            result.append(node.val)
+            if node.val == target.val:
+                return True
+            
+            if findThePath(node.left, target) or findThePath(node.right, target):
+                return True
+            result.pop()
+            return False
+        
+        findThePath(root, target)
+    return result
 
+def lowestCommonAncestor(root, p, q): # return type a tree node
+    """
+    236.LC : Lowest Common Ancestor of a Binary Tree
+
+    We recursively traverse the binary tree:
+
+    If the current node is null or equals to p or q, then we return the current node;
+
+    Otherwise, we recursively traverse the left and right subtrees, and record the returned results as left and right. If both left and right are not null, it means that p and q are in the left and right subtrees respectively, so the current node is the nearest common ancestor; If only one of left and right is not null, we return the one that is not null.
+
+    The time complexity is O(N), and the space complexity is O(N). Here, N is the number of nodes in the binary tree.
+    """
+    if root in (None, p, q):
+        return root
+    left = lowestCommonAncestor(root.left, p, q)
+    right = lowestCommonAncestor(root.right, p, q)
+    return root if left and right else (left or right)
+
+def widthOfBinaryTree(root):
+    """
+    662.LC : Maximum Width of Binary Tree
+    TC : O(N)
+    SC : O(N)
+    """
+    if root is None:
+        return 0
+    
+    from collections import deque
+    queue = deque([(root, 0)]) # Initialize the queue with the root node and index 0
+    maxWidth = 0
+
+    while queue:
+        # Perform BFS traversal
+        _, firstIndex = queue[0]
+        _, lastIndex = queue[-1]
+
+        # Calculate the width of the current level
+        currentWidth = lastIndex - firstIndex + 1
+        maxWidth = max(maxWidth, currentWidth)
+
+        for _ in range(len(queue)):
+            # Process each node in the current level
+            node, pos = queue.popleft()
+
+            if node.left:
+                # Add left child to the queue with the appropriate index
+                queue.append((node.left, 2*pos + 1))
+            if node.right:
+                # Add right child to the queue with the appropriate index
+                queue.append((node.right, 2*pos + 2))
+    return maxWidth
+
+def distanceK(root, target, K):
+    """
+    863.LC : All Nodes Distance K in Binary Tree
+    """
+    # TODO : Visit this problem after learning Graph data structure. 
+    # from collections import defaultdict, deque
+    # adj = defaultdict(list)
+    # def build_graph(node, parent=None):
+    #     if not node:
+    #         return
+    #     if parent:
+    #         adj[node.val].append(parent.val)
+    #         adj[parent.val].append(node.val)
+    #     if node.left:
+    #         build_graph(node.left, node)
+    #     if node.right:
+    #         build_graph(node.right, node)
+    # build_graph(root)
+    # # Step 2: BFS from the target node
+    # queue = deque([(target.val, 0)])  # (current node value, current distance)
+    # visited = set()
+    # visited.add(target.val)
+    # nodes_at_distance_k = []
+    # while queue:
+    #     current_node, current_distance = queue.popleft()
+    #     # If the current distance is K, add the node to the result list
+    #     if current_distance == K:
+    #         nodes_at_distance_k.append(current_node)
+    #     elif current_distance > K:
+    #         # If the distance exceeds K, stop the BFS
+    #         break
+    #     # Explore neighbors
+    #     for neighbor in adj[current_node]:
+    #         if neighbor not in visited:
+    #             visited.add(neighbor)
+    #             queue.append((neighbor, current_distance + 1))
+    # return nodes_at_distance_k
+
+    """
+    TC : O(2N) ~ O(N)
+    SC : O(2N) ~ O(N)
+    """
+    parents = dict()
+    def uplink(node, parent):
+        nonlocal parents
+        if node is None:
+            return
+        parents[node.val] = parent
+        uplink(node.left, node) 
+        uplink(node.right, node) 
+    
+    uplink(root, None)
+
+    visited = set()
+    result = list()
+
+    def dfs(node, kth):
+        nonlocal visited, result, target, parents
+
+        if node is None or node.val in visited:
+            return
+        visited.add(node.val)
+        if kth == 0:
+            result.append(node.val)
+        dfs(node.left, kth-1)
+        dfs(node.left, kth-1)
+        dfs(parents[node.val], kth-1)
+    dfs(target, K)
+
+    return result
+        
+
+
+#**********************************************************************************************************************************
 def main():
     root = demoBT()
     """
@@ -400,7 +554,9 @@ def main():
     # print("Print the tree in zigzag level order", zigzagLevelOrder(root))
     # print("Boundary Traversal of binary tree :", boundaryOfBinaryTree(root))
     # print("Vertical Traversal of binary tree :", verticalTraversal(root))
-    print("Is binary tree symmetric ?", isSymmetric(root))
+    # print("Is binary tree symmetric ?", isSymmetric(root))
+    # print("Maximum width of the binary tree is", widthOfBinaryTree(root))
+    print("All Nodes Distance K from target in Binary Tree are", distanceK(root, root.left.right, 2) )
 
 
 
