@@ -502,7 +502,7 @@ def distanceK(root, target, K):
     result = list()
 
     def dfs(node, kth):
-        nonlocal visited, result, target, parents
+        nonlocal visited, result, parents
 
         if node is None or node.val in visited:
             return
@@ -510,7 +510,7 @@ def distanceK(root, target, K):
         if kth == 0:
             result.append(node.val)
         dfs(node.left, kth-1)
-        dfs(node.left, kth-1)
+        dfs(node.right, kth-1)
         dfs(parents[node.val], kth-1)
     dfs(target, K)
 
