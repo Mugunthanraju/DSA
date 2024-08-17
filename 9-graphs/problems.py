@@ -470,11 +470,12 @@ def wordLadder1(beginWord=None, endWord=None, wordList=None):
     wordList = set(wordList)
 
     if endWord not in wordList:
-        print(0)
+        print(
+            f"The transformation sequence count from {beginWord} to {endWord} is {0} because there is no endWord in wordList"
+        )
         return 0  # If there is not endWord in list
 
     queue = deque([beginWord])
-    queue.pop
     seen = set([beginWord])
     path_count = 0
     alphabets = "abcdefghijklmnopqrstuvwxyz"
@@ -483,7 +484,9 @@ def wordLadder1(beginWord=None, endWord=None, wordList=None):
         for _ in range(len(queue)):
             word = queue.popleft()
             if word == endWord:
-                print(path_count)
+                print(
+                    f"The transformation sequence count from {beginWord} to {endWord} is {path_count}"
+                )
                 # Found endWord in list
                 return path_count
             for i in range(len(word)):
@@ -494,8 +497,10 @@ def wordLadder1(beginWord=None, endWord=None, wordList=None):
                     if made in wordList and made not in seen:
                         queue.append(made)
                         seen.add(made)
-    print(0)
-    return 0  # # Found endWord in list but cannot connect
+    print(
+        f"The transformation sequence count from {beginWord} to {endWord} is {0} because it is not possible"
+    )
+    return 0  # Found endWord in list but cannot connect
 
 
 def numDistinctIslands(grid=None):
@@ -814,6 +819,521 @@ def kahnsAlgo(graph=None):
     return []
 
 
+def courseSchedule1(numCourses=None, prerequisites=None):
+    """
+    LC - 207 : Course Schedule
+
+    """
+    numCourses = 2
+    prerequisites = [[1, 0]]
+
+    graph = [[] for _ in range(numCourses)]
+    for first, second in prerequisites:
+        graph[first].append(second)
+
+    indegree = [0] * numCourses
+    for node in range(numCourses):
+        for adj in graph[node]:
+            # storing indegree of each node
+            indegree[adj] += 1
+
+    from collections import deque
+
+    queue = deque()
+
+    for node, degree in enumerate(indegree):
+        if degree == 0:
+            queue.append(node)
+
+    output = list()
+    while queue:
+        node = queue.popleft()
+        output.append(node)
+
+        for adj in graph[node]:
+            indegree[adj] -= 1
+            if indegree[adj] == 0:
+                queue.append(adj)
+
+    result = numCourses == len(output)
+    print(f"Do anyone can finish all courses : {result}")
+    return result
+
+
+def courseSchedule1(numCourses=None, prerequisites=None):
+    """
+    LC - 207 : Course Schedule
+
+    """
+    numCourses = 2
+    # prerequisites = [[1, 0]]  # True
+    prerequisites = [[1, 0], [0, 1]]  # False
+
+    graph = [[] for _ in range(numCourses)]
+    indegree = [0] * numCourses
+
+    for second, first in prerequisites:
+        graph[first].append(second)
+        indegree[second] += 1
+
+    # for node in range(numCourses):
+    #     for adj in graph[node]:
+    #         # storing indegree of each node
+    #         indegree[adj] += 1
+
+    from collections import deque
+
+    queue = deque()
+
+    for node, degree in enumerate(indegree):
+        if degree == 0:
+            queue.append(node)
+
+    output = list()
+    # BFS
+    while queue:
+        node = queue.popleft()
+        output.append(node)
+
+        for adj in graph[node]:
+            indegree[adj] -= 1
+            if indegree[adj] == 0:
+                queue.append(adj)
+
+    result = numCourses == len(output)
+    print(f"Do anyone can finish all courses : {result}")
+    return result
+
+
+def courseSchedule2(numCourses=None, prerequisites=None):
+    """
+    LC - 210 : Course Schedule II
+
+    """
+    # numCourses = 2
+    # prerequisites = [[1, 0]]    # [0,1]
+
+    numCourses = 4
+    prerequisites = [[1, 0], [2, 0], [3, 1], [3, 2]]  # [0,2,1,3]
+
+    graph = [[] for _ in range(numCourses)]
+    indegree = [0] * numCourses  # [2, 1, 1, 0]
+
+    for second, first in prerequisites:
+        graph[first].append(second)
+        indegree[second] += 1
+
+    # for node in range(numCourses):
+    #     for adj in graph[node]:
+    #         # storing indegree of each node
+    #         indegree[adj] += 1
+
+    from collections import deque
+
+    queue = deque()
+
+    for node, degree in enumerate(indegree):
+        if degree == 0:
+            queue.append(node)
+
+    output = list()
+    # BFS
+    while queue:
+        node = queue.popleft()
+        output.append(node)
+
+        for adj in graph[node]:
+            indegree[adj] -= 1
+            if indegree[adj] == 0:
+                queue.append(adj)
+
+    result = output if numCourses == len(output) else []
+    print(f"The ordering of courses one should take to finish all courses : {result}")
+    return result
+
+
+def eventualSafeNodesTopo(graph=None):
+    """
+    LC - 802 : Find Eventual Safe States
+
+    SC : {Visit & Path}O(2N) + {Recursion Stack of DFS}O(N) =~ O(N)
+
+    TC : O(V + E){DFS}
+    """
+
+    graph = [[1, 2], [2, 3], [5], [0], [5], [], []]  # [2, 4, 5, 6]
+
+    # graph = [[1, 2, 3, 4], [1, 2], [3, 4], [0, 4], []]  # [4]
+
+    if not graph:
+        return []
+
+    from collections import deque
+
+    n = len(graph)
+    rgraph = list([] for _ in range(n))  # reversed direction of directed graph
+    outdegree = [0] * n
+    queue = deque()
+    # We can append it directly to result but we need result to be in ascending order, so is safe list
+    safe = [0] * n
+
+    for node in range(n):
+        for adj in graph[node]:
+            rgraph[adj].append(node)
+        outdegree[node] = len(graph[node])
+        if outdegree[node] == 0:
+            queue.append(node)
+
+    topo = list()
+    while queue:
+        node = queue.popleft()
+        safe[node] = 1
+
+        for adj in rgraph[node]:
+            # reducing degree of a adj-node due to removing of node.
+            outdegree[adj] -= 1
+            if outdegree[adj] == 0:
+                # enqueuing node with 0 outdegree
+                queue.append(adj)
+
+    result = [i for i in range(n) if safe[i] == 1]
+    print(f"Safe nodes are {result}")
+    return result
+
+
+def alienDictionary(words=None):
+    """
+    LeetCode - 269 : Alien Dictionary
+
+    Time Complexity: Overall time complexity: O(M * N)
+        - build_graph: O(M * N), where M is the maximum length of a word and N is the number of words. We iterate through each character of each word and add edges to the graph.
+        - calculate_indegree: O(M * N), where M is the maximum length of a word and N is the number of words. We iterate through each character of each word to initialize the indegree dictionary.
+        - topological_sort: O(M * N), where M is the maximum length of a word and N is the number of words. We iterate through the graph and queue to perform the topological sort.
+
+    Space Complexity: Overall space complexity: O(M * N)
+        - build_graph: O(M * N), where M is the maximum length of a word and N is the number of words. We store the graph using a defaultdict, which can have up to M * N entries.
+        - calculate_indegree: O(M * N), where M is the maximum length of a word and N is the number of words. We store the indegree dictionary, which can have up to M * N entries.
+        - topological_sort: O(M * N), where M is the maximum length of a word and N is the number of words. We store the queue and topo_order, which can have up to M * N entries.
+    """
+
+    # words = ["baa", "abcd", "abca", "cab", "cad"]   # "bdac"
+    words = ["wrt", "wrf", "er", "ett", "rftt"]  # "wertf"
+    # words = ["z", "x"]  # "zx"
+    # words = ["z", "x", "z"] # ""
+
+    from collections import defaultdict, deque
+
+    def build_graph(words):
+        graph = defaultdict(set)
+        for i in range(len(words) - 1):
+            word1, word2 = words[i], words[i + 1]
+            if len(word1) > len(word2) and word1.startswith(word2):
+                return {}  # Return empty graph if a word is a prefix of another
+            for c1, c2 in zip(word1, word2):
+                # zip will ensure the iteration number will be equal to small word length
+                if c1 != c2:
+                    graph[c1].add(c2)
+                    break
+        return graph
+
+    def calculate_indegree(graph, words):
+        indegree = {c: 0 for word in words for c in word}
+        for node in graph:
+            for neighbor in graph[node]:
+                indegree[neighbor] += 1
+        return indegree
+
+    def topological_sort(graph, indegree):
+        queue = deque([node for node in indegree if indegree[node] == 0])
+        topo_order = []
+        while queue:
+            node = queue.popleft()
+            topo_order.append(node)
+            for neighbor in graph[node]:
+                indegree[neighbor] -= 1
+                if indegree[neighbor] == 0:
+                    queue.append(neighbor)
+        return "" if len(topo_order) != len(indegree) else "".join(topo_order)
+
+    graph = build_graph(words)
+    indegree = calculate_indegree(graph, words)
+    result = topological_sort(graph, indegree)
+
+    print(f"Order of letters in alien language : {result}")
+    return result
+
+
+def shortestPathDAG_Topo(graph=None, V=None):
+    """
+    Time Complexity : O(N+M) {for the topological sort} + O(N+M) {for relaxation of vertices, each node and its adjacent nodes get traversed} ~ O(N+M).
+
+    Space Complexity:  O(N) {for the stack storing the topological sort} + O(N) {for storing the shortest distance for each node} + O(N) {for the visited array} + O( N+2M) {for the adjacency list} ~ O(N+M) .
+
+    Note: Where N = number of vertices and M = number of edges.
+    """
+
+    graph = {
+        0: [(1, 2), (4, 1)],
+        1: [(2, 3)],
+        2: [(3, 6)],
+        3: [],
+        4: [(2, 2), (5, 4)],
+        5: [(3, 1)],
+    }  # output : [0, 2, 3, 6, 1, 5]
+    V = len(graph)
+
+    if not graph:
+        return []
+
+    def dfs(node, graph, visit, stack):
+        visit.add(node)
+
+        for neighbor, weight in graph[node]:
+            if neighbor not in visit:
+                dfs(neighbor, graph, visit, stack)
+        stack.append(node)
+
+    def topologicalSort(graph, Vertexes):
+        from collections import deque
+
+        visit = set()
+        stack = deque()
+
+        for vertex in range(Vertexes):
+            if vertex not in visit:
+                dfs(vertex, graph, visit, stack)
+        return stack
+
+    def shortestPath(graph, vertexes):
+        topo_order = topologicalSort(graph, vertexes)
+        distance = [float("inf")] * vertexes
+        source = topo_order.pop()
+        topo_order.append(source)
+        distance[source] = (
+            0  # source is where the graph start its traversal to other nodes.
+        )
+
+        while topo_order:
+            node = topo_order.pop()
+            for neighbor, weight in graph[node]:
+                if distance[node] + weight < distance[neighbor]:
+                    distance[neighbor] = distance[node] + weight
+        return distance
+
+    result = shortestPath(graph, V)
+    print(f"Shortest distance from {0} to all the nodes are {result}")
+    return result
+
+
+def shortestPathUDG_Topo():
+    """
+    Time Complexity : O(N+M) {for the topological sort} + O(N+M) {for relaxation of vertices, each node and its adjacent nodes get traversed} ~ O(N+M).
+
+    Space Complexity:  O(N) {for the stack storing the topological sort} + O(N) {for storing the shortest distance for each node} + O(N) {for the visited array} + O( N+2M) {for the adjacency list} ~ O(N+M) .
+
+    Note: Where N = number of vertices and M = number of edges.
+    """
+
+    src = 0
+    n = 9
+    m = 10
+    edges = [
+        [0, 1],
+        [0, 3],
+        [3, 4],
+        [4, 5],
+        [5, 6],
+        [1, 2],
+        [2, 6],
+        [6, 7],
+        [7, 8],
+        [6, 8],
+    ]  # [0, 1, 2, 1, 2, 3, 3, 4, 4]
+
+    # n = 4
+    # m = 4
+    # src = 3
+    # edges = [[0, 0], [1, 1], [1, 3], [3, 0]]    # [1, 1, -1, 0]
+
+    if not edges:
+        return []
+
+    source = src
+    V = n
+    graph = [[] for _ in range(V)]
+
+    for u, v in edges:
+        graph[u].append(v)
+        graph[v].append(u)
+
+    # Here, Topological sort BFS is used
+    def shortestPath(graph, Vertexes, source):
+        from collections import deque
+
+        queue = deque()
+        distance = [float("inf")] * Vertexes
+
+        queue.append(source)
+        distance[source] = 0
+
+        while queue:
+            node = queue.popleft()
+            for neighbor in graph[node]:
+                total_cost = distance[node] + 1
+                if distance[neighbor] > total_cost:
+                    queue.append(neighbor)
+                    distance[neighbor] = total_cost
+
+        for i, v in enumerate(distance):
+            if v == float("inf"):
+                distance[i] = -1
+        return distance
+
+    result = shortestPath(graph, V, source)
+    print(
+        f"Shortest distance in Undirected Graph from {0} to all the nodes are {result}"
+    )
+    return result
+
+
+def dijkstraPQ(graph=None, source=None):
+    """
+    Implements Dijkstra's algorithm to find the shortest path from a source node to all other nodes in a weighted graph.
+
+    Args:
+        graph (dict): The adjacency list representation of the weighted graph.
+        source (int): The source node.
+
+    Returns:
+        dict: A dictionary containing the shortest distance from the source node to each node.
+        dict: A dictionary containing the previous node in the shortest path for each node.
+    """
+
+    # Example usage
+    # A-0, B-1, C-2, D-3, E-4, F-5
+    graph = {
+        "A": {"B": 4, "C": 4},
+        "B": {"A": 4, "C": 2},
+        "C": {"A": 4, "B": 2, "D": 3, "E": 1, "F": 6},
+        "D": {"C": 3, "F": 2},
+        "E": {"C": 1, "F": 3},
+        "F": {"C": 6, "D": 2, "E": 3},
+    }
+
+    """
+        A   D
+        |\ / \ 
+        | C---F
+        |/ \ /
+        B   E
+    """
+
+    source = "A"
+
+    # Import for Priority-Queue(Heap)
+    import heapq
+
+    # Initialize the distance and previous dictionaries
+    distance = {node: float("inf") for node in graph}
+    previous = {node: None for node in graph}
+    distance[source] = 0
+
+    # Create a priority queue and add the source node
+    pq = [(0, source)]
+
+    while pq:
+        # Pop the node with the smallest known distance from the priority queue
+        curr_dist, u = heapq.heappop(pq)
+
+        # If the node has already been visited with a shorter distance, skip it
+        if curr_dist > distance[u]:
+            continue
+
+        # Update the distances of the neighboring nodes
+        for v, weight in graph[u].items():
+            alt = distance[u] + weight
+            if alt < distance[v]:
+                distance[v] = alt
+                previous[v] = u
+                heapq.heappush(pq, (alt, v))
+
+    print(f"Shortest distances from node {source}:")
+    for node, dist in distance.items():
+        print(f"{node}: {dist}")
+
+    print("\nPrevious nodes in the shortest paths:")
+    for node, prev in previous.items():
+        print(f"{node}: {prev}")
+
+    return distance, previous
+
+
+def dijkstraSET(graph=None, source=None):
+    """
+    Implements Dijkstra's algorithm to find the shortest path from a source node to all other nodes in a weighted graph.
+
+    Args:
+        graph (dict): The adjacency list representation of the weighted graph.
+        source (int): The source node.
+
+    Returns:
+        dict: A dictionary containing the shortest distance from the source node to each node.
+        dict: A dictionary containing the previous node in the shortest path for each node.
+    """
+
+    # Example usage
+    # A-0, B-1, C-2, D-3, E-4, F-5
+    graph = {
+        "A": {"B": 4, "C": 4},
+        "B": {"A": 4, "C": 2},
+        "C": {"A": 4, "B": 2, "D": 3, "E": 1, "F": 6},
+        "D": {"C": 3, "F": 2},
+        "E": {"C": 1, "F": 3},
+        "F": {"C": 6, "D": 2, "E": 3},
+    }
+    """
+        A   D
+        |\ / \ 
+        | C---F
+        |/ \ /
+        B   E
+    """
+    source = "A"
+
+    # Initialize the distance and previous dictionaries
+    distance = {node: float("inf") for node in graph}
+    previous = {node: None for node in graph}
+    distance[source] = 0
+
+    # Create a set to keep track of visited nodes
+    visited = set()
+
+    # Iterate until all nodes have been visited
+    while len(visited) < len(graph):
+        # Find the node with the smallest known distance from the unvisited nodes
+        u = min(
+            (node for node in graph if node not in visited), key=lambda x: distance[x]
+        )
+        visited.add(u)
+
+        # Update the distances of the neighboring nodes
+        for v, weight in graph[u].items():
+            alt = distance[u] + weight
+            if alt < distance[v]:
+                distance[v] = alt
+                previous[v] = u
+
+    print(f"Shortest distances from node {source}:")
+    for node, dist in distance.items():
+        print(f"{node}: {dist}")
+
+    print("\nPrevious nodes in the shortest paths:")
+    for node, prev in previous.items():
+        print(f"{node}: {prev}")
+
+    return distance, previous
+
+
 def main():
     graph, vertexes = createGraphAL(True)
     # graph.print_list()
@@ -834,8 +1354,16 @@ def main():
     # detectCycleDirectedGraph()
     # eventualSafeNodesCyclic()
     # eventualSafeNodesOptimized()
-    topologicalSort()
-    kahnsAlgo()
+    # topologicalSort()
+    # kahnsAlgo()
+    # courseSchedule1()
+    # courseSchedule2()
+    # eventualSafeNodesTopo()
+    # alienDictionary()
+    # shortestPathDAG_Topo()
+    # shortestPathUDG_Topo()
+    # dijkstraPQ()
+    dijkstraSET()
 
 
 if __name__ == "__main__":
