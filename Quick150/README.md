@@ -1,8 +1,6 @@
 # Top 150 Interview Problems
 
 
-
-
 | S.no. | Leetcode Title | Type | Solution File | Chat Link | Difficulty |
 | ---- | ---- | ---- | ---- | ---- | ---- |
 | 1 | [88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/) | Array/String | [Solution](./solutions/Solution1.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#1) | E |
@@ -29,10 +27,10 @@
 | 22 | [6. Zigzag Conversion](https://leetcode.com/problems/zigzag-conversion/) | Array/String |  | [Chat]() | M |
 | 23 | [28. Find the Index of the First Occurrence in a String](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/) | Array/String |  | [Chat]() | E |
 | 24 | [68. Text Justification](https://leetcode.com/problems/text-justification/) | Array/String |  | [Chat]() | H |
-| 25 | [125. Valid Palindrome](https://leetcode.com/problems/valid-palindrome/) | 2 Pointers | [Solution](./solutions/Solution25.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#12) | E |
+| 25 | [125. Valid Palindrome](https://leetcode.com/problems/valid-palindrome/) | 2 Pointers | [Solution](./solutions/Solution25.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#15) | E |
 | 26 | [392. Is Subsequence](https://leetcode.com/problems/is-subsequence/) | 2 Pointers | [Solution](./solutions/Solution26.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#13) | E |
 | 27 | [167. Two Sum II - Input Array Is Sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/) | 2 Pointers | [Solution](./solutions/Solution27.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#14) | M |
-| 28 | [11. Container With Most Water](https://leetcode.com/problems/container-with-most-water/) | 2 Pointers |  | [Chat]() | M |
+| 28 | [11. Container With Most Water](https://leetcode.com/problems/container-with-most-water/) | 2 Pointers | [Solution](./solutions/Solution28.java) | [Chat]() | M |
 | 29 | [15. 3Sum](https://leetcode.com/problems/3sum/) | 2 Pointers |  | [Chat]() | M |
 | 30 | [209. Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/) | Sliding Win |  | [Chat]() | M |
 | 31 | [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Sliding Win |  | [Chat]() | M |
@@ -45,7 +43,8 @@
 | 38 | [289. Game of Life](https://leetcode.com/problems/game-of-life/) | Matrix |  | [Chat]() | M |
 | 39 | [383. Ransom Note](https://leetcode.com/problems/ransom-note/) | Hashmap |  | [Chat]() | E |
 | 40 | [205. Isomorphic Strings](https://leetcode.com/problems/isomorphic-strings/) | Hashmap |  | [Chat]() | E |
-| 41 | [290. Word Pattern](https://leetcode.com/problems/word-pattern/) | Hashmap |  | [Chat]() | E |
+| 41 | [290. Word Pattern](https://leetcode.com/problems/word-pattern/) | Hashmap | [Solution](./solutions/Solution41.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#15) | E |
+| 41.1 | [291. Word Pattern II](https://leetcode.com/problems/word-pattern-ii) | Backtracking-DFS | [Solution](./solutions/Solution41_1.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#21) | M |
 | 42 | [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/) | Hashmap |  | [Chat]() | E |
 | 43 | [49. Group Anagrams](https://leetcode.com/problems/group-anagrams/) | Hashmap |  | [Chat]() | M |
 | 44 | [1. Two Sum](https://leetcode.com/problems/two-sum/) | Hashmap |  | [Chat]() | E |
@@ -106,9 +105,9 @@
 | 99 | [211. Design Add and Search Words Data Structure](https://leetcode.com/problems/design-add-and-search-words-data-structure/) | Trie |  | [Chat]() | M |
 | 100 | [212. Word Search II](https://leetcode.com/problems/word-search-ii/) | Trie |  | [Chat]() | H |
 | 101 | [17. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/) | Backtracking |  | [Chat]() | M |
-| 102 | [77. Combinations](https://leetcode.com/problems/combinations/) | Backtracking |  | [Chat]() | M |
-| 103 | [46. Permutations](https://leetcode.com/problems/permutations/) | Backtracking |  | [Chat]() | M |
-| 104 | [39. Combination Sum](https://leetcode.com/problems/combination-sum/) | Backtracking |  | [Chat]() | M |
+| 102 | [77. Combinations](https://leetcode.com/problems/combinations/) | Backtracking | [Solution](./solutions/Solution102.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#22) | M |
+| 103 | [46. Permutations](https://leetcode.com/problems/permutations/) | Backtracking | [Solution](./solutions/Solution103.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#23) | M |
+| 104 | [39. Combination Sum](https://leetcode.com/problems/combination-sum/) | Backtracking | [Solution](./solutions/Solution104.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#24) | M |
 | 105 | [52. N-Queens II](https://leetcode.com/problems/n-queens-ii/) | Backtracking |  | [Chat]() | H |
 | 106 | [22. Generate Parentheses](https://leetcode.com/problems/generate-parentheses/) | Backtracking |  | [Chat]() | M |
 | 107 | [79. Word Search](https://leetcode.com/problems/word-search/) | Backtracking |  | [Chat]() | M |
@@ -155,7 +154,15 @@
 | 148 | [123. Best Time to Buy and Sell Stock III](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/) | Multi-D DP |  | [Chat]() | H |
 | 149 | [188. Best Time to Buy and Sell Stock IV](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/) | Multi-D DP |  | [Chat]() | H |
 | 150 | [221. Maximal Square](https://leetcode.com/problems/maximal-square/) | Multi-D DP |  | [Chat]() | M |
-|  |  |  |  |  |  |
-
 
 Chat Support : [Preplexity](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw)
+
+## Random Problems
+| S.no | Leetcode Title | Type | Difficulty | Solution | Chat |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| 151 | [78. Subsets](https://leetcode.com/problems/subsets/) | Backtracking | M | [Solution](./solutions/Solution151.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#25) |
+| 152 | [90. Subsets II](https://leetcode.com/problems/subsets-ii/) | Backtracking | M | [Solution](./solutions/Solution152.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#26) |
+| 153 | [40. Combination Sum II](https://leetcode.com/problems/combination-sum-ii/) | Backtracking | M | [Solution](./solutions/Solution153.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#27) |
+| 154 | [567. Permutation in String](https://leetcode.com/problems/permutation-in-string/) | Backtracking | M | [Solution](./solutions/Solution153.java) | [Chat]() |
+|  |  |  |  | [Solution](./solutions/Solution153.java) | [Chat]() |
+
