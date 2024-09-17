@@ -1,6 +1,5 @@
 # Top 150 Interview Problems
 
-
 | S.no. | Leetcode Title | Type | Solution File | Chat Link | Difficulty |
 | ---- | ---- | ---- | ---- | ---- | ---- |
 | 1 | [88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/) | Array/String | [Solution](./solutions/Solution1.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#1) | E |
@@ -30,9 +29,9 @@
 | 25 | [125. Valid Palindrome](https://leetcode.com/problems/valid-palindrome/) | 2 Pointers | [Solution](./solutions/Solution25.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#15) | E |
 | 26 | [392. Is Subsequence](https://leetcode.com/problems/is-subsequence/) | 2 Pointers | [Solution](./solutions/Solution26.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#13) | E |
 | 27 | [167. Two Sum II - Input Array Is Sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/) | 2 Pointers | [Solution](./solutions/Solution27.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#14) | M |
-| 28 | [11. Container With Most Water](https://leetcode.com/problems/container-with-most-water/) | 2 Pointers | [Solution](./solutions/Solution28.java) | [Chat]() | M |
-| 29 | [15. 3Sum](https://leetcode.com/problems/3sum/) | 2 Pointers |  | [Chat]() | M |
-| 30 | [209. Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/) | Sliding Win |  | [Chat]() | M |
+| 28 | [11. Container With Most Water](https://leetcode.com/problems/container-with-most-water/) | 2 Pointers | [Solution](./solutions/Solution28.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#30) | M |
+| 29 | [15. 3Sum](https://leetcode.com/problems/3sum/) | 2 Pointers | [Solution](./solutions/Solution29.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#31) | M |
+| 30 | [209. Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/) | Sliding Win | [Solution](./solutions/Solution30.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#32) | M |
 | 31 | [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Sliding Win |  | [Chat]() | M |
 | 32 | [30. Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/) | Sliding Win |  | [Chat]() | H |
 | 33 | [76. Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/) | Sliding Win |  | [Chat]() | H |
