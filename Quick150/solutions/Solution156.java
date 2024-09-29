@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-class Solution41_1 {
+class Solution156 {
 
     private static Map<Character, String> charWord = new HashMap<>();
     private static Set<String> visit = new HashSet<>();
