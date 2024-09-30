@@ -17,14 +17,14 @@
 | 13 | [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/) | Array-Prefix | M | [Solution](./solutions/Solution13.java) | [Chat]() |
 | 14 | [134. Gas Station](https://leetcode.com/problems/gas-station/) | Array-Greedy | M |  | [Chat]() |
 | 15 | [135. Candy](https://leetcode.com/problems/candy/) | Array/String | H |  | [Chat]() |
-| 16 | [42. Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/) | Array/String | H |  | [Chat]() |
-| 17 | [13. Roman to Integer](https://leetcode.com/problems/roman-to-integer/) | Array/String | E |  | [Chat]() |
-| 18 | [12. Integer to Roman](https://leetcode.com/problems/integer-to-roman/) | Array/String | M |  | [Chat]() |
-| 19 | [58. Length of Last Word](https://leetcode.com/problems/length-of-last-word/) | Array/String | E |  | [Chat]() |
-| 20 | [14. Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/) | Array/String | E |  | [Chat]() |
-| 21 | [151. Reverse Words in a String](https://leetcode.com/problems/reverse-words-in-a-string/) | Array/String | M |  | [Chat]() |
+| 16 | [42. Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/) | DP / Stack / 2 Pointer | H | [Solution](./solutions/Solution16.java) | [Chat](https://www.perplexity.ai/search/73-set-matrix-zeroes-6l86wjJYSnCTclk6zboHwg#13) |
+| 17 | [13. Roman to Integer](https://leetcode.com/problems/roman-to-integer/) | String - HashMap | E | [Solution](./solutions/Solution17.java) | [Chat]() |
+| 18 | [12. Integer to Roman](https://leetcode.com/problems/integer-to-roman/) | Array/String | M | [Solution](./solutions/Solution18.java) | [Chat](https://www.perplexity.ai/search/73-set-matrix-zeroes-6l86wjJYSnCTclk6zboHwg#14) |
+| 19 | [58. Length of Last Word](https://leetcode.com/problems/length-of-last-word/) | Array/String | E | [Solution](./solutions/Solution19.java) | [Chat]() |
+| 20 | [14. Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/) | Array/String | E | [Solution](./solutions/Solution20.java) | [Chat](https://www.perplexity.ai/search/73-set-matrix-zeroes-6l86wjJYSnCTclk6zboHwg#17) |
+| 21 | [151. Reverse Words in a String](https://leetcode.com/problems/reverse-words-in-a-string/) | Array/String | M | [Solution](./solutions/Solution21.java) | [Chat](https://www.perplexity.ai/search/73-set-matrix-zeroes-6l86wjJYSnCTclk6zboHwg#15) |
 | 22 | [6. Zigzag Conversion](https://leetcode.com/problems/zigzag-conversion/) | Array/String | M |  | [Chat]() |
-| 23 | [28. Find the Index of the First Occurrence in a String](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/) | Array/String | E |  | [Chat]() |
+| 23 | [28. Find the Index of the First Occurrence in a String](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/) | Array/String | E | [Solution](./solutions/Solution23.java) | [Chat](https://www.perplexity.ai/search/73-set-matrix-zeroes-6l86wjJYSnCTclk6zboHwg#16) |
 | 24 | [68. Text Justification](https://leetcode.com/problems/text-justification/) | Array/String | H |  | [Chat]() |
 | 25 | [125. Valid Palindrome](https://leetcode.com/problems/valid-palindrome/) | 2 Pointers | E | [Solution](./solutions/Solution25.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#15) |
 | 26 | [392. Is Subsequence](https://leetcode.com/problems/is-subsequence/) | 2 Pointers | E | [Solution](./solutions/Solution26.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#13) |
