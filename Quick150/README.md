@@ -69,10 +69,10 @@
 | 65 | [61. Rotate List](https://leetcode.com/problems/rotate-list/) | Linked List | M |  | [Chat]() |
 | 66 | [86. Partition List](https://leetcode.com/problems/partition-list/) | Linked List | M |  | [Chat]() |
 | 67 | [146. LRU Cache](https://leetcode.com/problems/lru-cache/) | Linked List | M |  | [Chat]() |
-| 68 | [104. Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/) | B-T General | E |  | [Chat]() |
-| 69 | [100. Same Tree](https://leetcode.com/problems/same-tree/) | B-T General | E |  | [Chat]() |
-| 70 | [226. Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/) | B-T General | E |  | [Chat]() |
-| 71 | [101. Symmetric Tree](https://leetcode.com/problems/symmetric-tree/) | B-T General | E |  | [Chat]() |
+| 68 | [104. Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/) | B-T General | E | [Solution](./solutions/Solution68.java) | [Chat]() |
+| 69 | [100. Same Tree](https://leetcode.com/problems/same-tree/) | B-T General | E | [Solution](./solutions/Solution69.java) | [Chat]() |
+| 70 | [226. Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/) | B-T General | E | [Solution](./solutions/Solution70.java) | [Chat]() |
+| 71 | [101. Symmetric Tree](https://leetcode.com/problems/symmetric-tree/) | B-T General | E | [Solution](./solutions/Solution71.java) | [Chat]() |
 | 72 | [105. Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) | B-T General | M |  | [Chat]() |
 | 73 | [106. Construct Binary Tree from Inorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/) | B-T General | M |  | [Chat]() |
 | 74 | [117. Populating Next Right Pointers in Each Node II](https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/) | B-T General | M |  | [Chat]() |
@@ -87,7 +87,7 @@
 | 83 | [637. Average of Levels in Binary Tree](https://leetcode.com/problems/average-of-levels-in-binary-tree/) | B-T BFS | E |  | [Chat]() |
 | 84 | [102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/) | B-T BFS | M |  | [Chat]() |
 | 85 | [103. Binary Tree Zigzag Level Order Traversal](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/) | B-T BFS | M |  | [Chat]() |
-| 86 | [530. Minimum Absolute Difference in BST](https://leetcode.com/problems/minimum-absolute-difference-in-bst/) | BST | E |  | [Chat]() |
+| 86 | [530. Minimum Absolute Difference in BST](https://leetcode.com/problems/minimum-absolute-difference-in-bst/) | BST | E | [Solution](./solutions/Solution86.java) | [Chat]() |
 | 87 | [230. Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/) | BST | M |  | [Chat]() |
 | 88 | [98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/) | BST | M |  | [Chat]() |
 | 89 | [200. Number of Islands](https://leetcode.com/problems/number-of-islands/) | Graph | M |  | [Chat]() |
@@ -164,5 +164,6 @@ Chat Support : [Preplexity](https://www.perplexity.ai/search/now-you-re-task-is-
 | 154 | [567. Permutation in String](https://leetcode.com/problems/permutation-in-string/) | Sliding Window (or) Backtracking | M | [Solution](./solutions/Solution154.java) | [Chat](https://www.perplexity.ai/search/567-permutation-in-string-XBbI2JqpQze_aC_BKXc3tQ#0) |
 | 155 | [334. Increasing Triplet Subsequence](https://leetcode.com/problems/increasing-triplet-subsequence/) | Greedy | M | [Solution](./solutions/Solution155.java) | [Chat](https://www.perplexity.ai/search/567-permutation-in-string-XBbI2JqpQze_aC_BKXc3tQ#1) |
 | 156 | [291. Word Pattern II](https://leetcode.com/problems/word-pattern-ii) | Backtracking-DFS | M | [Solution](./solutions/Solution156.java) | [Chat](https://www.perplexity.ai/search/now-you-re-task-is-to-provide-tn0sBomFSACKGIxjj7LVOw#21) |
+| 157 | [1331. Rank Transform of an Array](https://leetcode.com/problems/rank-transform-of-an-array/) | Sorting - HashMap | E | [Solution](./solutions/Solution157.java) | [Chat]() |
 |  |  |  |  |  |  |
 
