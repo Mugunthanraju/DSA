@@ -54,3 +54,4 @@ l10n/
 *.class
 __pycache__/
 .venv
+.idea
