@@ -55,3 +55,4 @@ l10n/
 __pycache__/
 .venv
 .idea
+*.obsidian

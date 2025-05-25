@@ -6,7 +6,7 @@ public class FirstMissPositive {
         int result = 1, n = nums.length, temp;
 
         for (int i = 0; i < n; i++) {
-            while (nums[i] > 0 && nums[i] <      n + 1 && nums[nums[i] - 1] != nums[i]) {
+            while (nums[i] > 0 && nums[i] < n + 1 && nums[nums[i] - 1] != nums[i]) {
                 temp = nums[i];
                 nums[i] = nums[nums[i] - 1];
                 nums[nums[i] - 1] = temp;
